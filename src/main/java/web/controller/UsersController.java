@@ -20,37 +20,37 @@ public class UsersController {
 	@GetMapping
 	public String printAllUsers(Model model) {
 		model.addAttribute("usersList", userService.getAllUsers());
-		return "pages/users";
+		return "users";
 	}
 
 	@GetMapping("/addUser")
 	public String addUser(ModelMap model) {
 		model.addAttribute("user", new User());
-		return "pages/saveUser";
+		return "saveUser";
 	}
 
 	@PostMapping()
 	public String saveUser(@ModelAttribute("user") User user) {
 		userService.saveUser(user);
-		return "redirect:pages/users";
+		return "redirect:users";
 	}
 
 	@GetMapping("/editUser")
 	public String userEdit(@RequestParam(value = "id") long id, Model model) {
 		model.addAttribute("user", userService.getUser(id));
-		return "pages/userEdit";
+		return "userEdit";
 	}
 
 	@PatchMapping()
 	public String userUpdate(@ModelAttribute("user") User user) {
 		userService.editUser(user);
-		return "redirect:pages/users";
+		return "redirect:users";
 	}
 
 	@DeleteMapping()
 	public String removeUser(@RequestParam("id") long id) {
 		userService.removeUser(id);
-		return "redirect:pages/users";
+		return "redirect:users";
 	}
 
 }
